@@ -16,7 +16,7 @@ public class WeatherForecast {
     for (Map.Entry<String, Double> temperature : temperatures.getTemperatures().entrySet()) {
       // adding 1 celsius degree to current value
       // as a temporary weather forecast
-      resultMap.put(temperature.getKey(), temperature.getValue() + 1);
+      resultMap.put(temperature.getKey(), temperature.getValue() + 1.0);
     }
     return resultMap;
   };
