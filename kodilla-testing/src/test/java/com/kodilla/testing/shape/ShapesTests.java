@@ -2,7 +2,7 @@ package com.kodilla.testing.shape;
 import org.junit.jupiter.api.*;
 
 @DisplayName("TDD: Shape Collector Test Suite")
-public class ShapeCollectorTestSuite {
+public class ShapesTests {
 
   @Nested
   @DisplayName("Test the square")
