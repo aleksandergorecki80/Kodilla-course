@@ -4,9 +4,9 @@ public class ForumStatistics {
   private int usersCount;
   private int postsCount;
   private int commentsCount;
-  private int averagePostsPerUser;
-  private int averageCommentsPerUser;
-  private int averageCommentsPerPost;
+  private double averagePostsPerUser;
+  private double averageCommentsPerUser;
+  private double averageCommentsPerPost;
 
   public void calculateAdvStatistics(Statistics statistics){
      this.usersCount = statistics.userNames().size();
@@ -17,13 +17,9 @@ public class ForumStatistics {
      this.averageCommentsPerPost = this.calculateAverageCommentsPerPost();
   }
 
-
-
-//  Math.round(area * 100.0) / 100.0;
-
-  private int calculateAveragePostsPerUser() {
+  private double calculateAveragePostsPerUser() {
     if (this.usersCount == 0 || this.usersCount > this.postsCount) return 0;
-    return  this.postsCount / this.usersCount;
+    return this.postsCount / (double) this.usersCount ;
   }
 
   private int calculateAverageCommentsPerUser() {
@@ -35,8 +31,6 @@ public class ForumStatistics {
     if (this.postsCount == 0 || this.postsCount > this.commentsCount) return 0;
     return this.commentsCount / this.postsCount;
   }
-
-
 
   public double getAveragePostsPerUser() {
     return averagePostsPerUser;
