@@ -1,50 +1,59 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.book.Book;
+import com.kodilla.stream.book.BookDirectory;
 
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 
 public class StreamMain {
   public static void main(String[] args) {
+//    People.getList().stream()
+//        .map(String::toUpperCase)
+//        .filter(s -> s.length() > 11)
+//        .map(s -> s.substring(0, s.indexOf(' ') + 2) + ".")
+//        .filter(s -> s.charAt(0) == 'M')
+//        .forEach(System.out::println);
 
-    Processor processor = new Processor();
-    processor.execute(() -> System.out.println("This is an example text."));
+    // PRINTING THE LIST
+//    BookDirectory bookDirectory = new BookDirectory();
+//    bookDirectory.getList().stream()
+//        .filter(book -> book.getYearOfPublication() > 2010)
+//        .forEach(System.out::println);
 
-    ExpressionExecutor expressionExecutor = new ExpressionExecutor();
+//    TERMINATE LIST TO LIST
+//    BookDirectory bookDirectory = new BookDirectory();
+//    List<Book> theResultListOffBooks = bookDirectory.getList().stream()
+//        .filter(book -> book.getYearOfPublication() > 2010)
+//        .collect(Collectors.toList());
+//
+//    System.out.println("# elements: " + theResultListOffBooks.size());
+//    theResultListOffBooks.stream()
+//        .forEach(System.out::println);
 
-    System.out.println("Calculating expressions with lambdas");
-    expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
-    expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-    expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-    expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+    // TERMINATE LIST TO MAP
+//    BookDirectory bookDirectory = new BookDirectory();
+//
+//    Map<String, Book> theResultMapOfBook = bookDirectory.getList().stream()
+//        .filter(book -> book.getYearOfPublication() > 2005)
+//        .collect(Collectors.toMap(Book::getSignature, book -> book));
+//
+//    System.out.println("# elements: " + theResultMapOfBook.size());
+//    theResultMapOfBook.entrySet().stream()
+//        .map(entry -> entry.getKey() + ": " + entry.getValue())
+//        .forEach(System.out::println);
 
-    System.out.println("Calculating expressions with method references");
-    expressionExecutor.executeExpression(10, 5, FunctionalCalculator::addAToB);
-    expressionExecutor.executeExpression(10, 5, FunctionalCalculator::multiplyAByB);
-    expressionExecutor.executeExpression(10, 5, FunctionalCalculator::subBFromA);
-    expressionExecutor.executeExpression(10, 5, FunctionalCalculator::divideAByB);
+    // TERMINATE JOINING
+    BookDirectory bookDirectory = new BookDirectory();
+    String theResultStringOfBooks = bookDirectory.getList().stream()
+        .filter(book -> book.getYearOfPublication() > 2005)
+        .map(Book::toString)
+        .collect(Collectors.joining(",\n", "<<", ">>"));
 
-    System.out.println("=== Beautifying texts ===");
-    PoemBeautifier poemBeautifier = new PoemBeautifier();
+    System.out.println(theResultStringOfBooks);
 
-    String upperCaseText = poemBeautifier.beautify("text example", text -> text.toUpperCase());
-    System.out.println(upperCaseText);
-
-    String addAbc = poemBeautifier.beautify("text example", text -> "ABC " + text + " ABC");
-    System.out.println(addAbc);
-
-    String replace = poemBeautifier.beautify("text example", text -> text.replaceAll("text", "poem"));
-    System.out.println(replace);
-
-    String stars = poemBeautifier.beautify("text example", text -> "  *************\n" + "| " + text +  " |" + "\n  *************");
-    System.out.println(stars);
-
-    System.out.println("Using Stream to generate even numbers from 1 to 20");
-    NumbersGenerator.generateEven(20);
   }
 }
 

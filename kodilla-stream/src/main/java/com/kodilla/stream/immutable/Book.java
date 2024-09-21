@@ -16,7 +16,7 @@ public final class Book {
   }
 
   public String getAuthor() {
-    return author;
+    return     author;
   }
 
   public int getYearOfPublication() {
