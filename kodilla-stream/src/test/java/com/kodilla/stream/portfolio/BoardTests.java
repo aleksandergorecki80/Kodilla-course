@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,5 +143,32 @@ public class BoardTests {
         .count();
     // Then
     assertEquals(2, longTasks);
+  }
+
+  @Test
+  void testAddTaskListAverageWorkingOnTask() {
+    Board project = prepareTestData();
+
+    // When
+    List<TaskList> inProgressTasks = new ArrayList<>();
+    inProgressTasks.add(new TaskList("In progress"));
+
+    double sumOfDays = project.getTaskLists().stream()
+        .filter(inProgressTasks::contains)
+        .flatMap(taskList -> taskList.getTasks().stream())
+        .map(Task::getCreated)
+        .map(createdDate -> Period.between(createdDate, LocalDate.now()))
+        .map(period -> period.getYears() * 365 + period.getMonths() * 30 + period.getDays())
+        .reduce(0, (a, b) -> a + b);
+
+
+    long numberOfOrders = project.getTaskLists().stream()
+        .filter(inProgressTasks::contains)
+        .flatMap(taskList -> taskList.getTasks().stream())
+        .map(Task::getCreated)
+        .filter(createdDate -> !Period.between(createdDate, LocalDate.now()).isNegative())
+        .count();
+
+    assertEquals(10, sumOfDays/numberOfOrders);
   }
 }
