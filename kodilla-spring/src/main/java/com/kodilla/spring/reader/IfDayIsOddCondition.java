@@ -9,6 +9,8 @@ public class IfDayIsOddCondition implements Condition {
 
   @Override
   public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+    String result = context.getEnvironment().getProperty("os.name");
+    System.out.println(result);
     return LocalDate.now().getDayOfMonth() % 2 != 0;
   }
 }
