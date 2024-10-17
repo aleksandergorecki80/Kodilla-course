@@ -1,0 +1,40 @@
+CREATE TABLE ISSUESLISTS
+(
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100)
+);
+
+CREATE TABLE ISSUES
+(
+    ID SERIAL PRIMARY KEY,
+    ISSUESLIST_ID BIGINT UNSIGNED NOT NULL,
+    USER_ID_ASSIGNEDTO BIGINT UNSIGNED NOT NULL,
+    SUMMARY CHAR(255),
+    DESCRIPTION VARCHAR(2000) CHARSET utf8,
+    FOREIGN KEY (ISSUESLIST_ID) REFERENCES ISSUESLISTS(ID),
+    FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(ID)
+);
+
+INSERT INTO ISSUESLISTS(NAME)
+VALUES
+    ("ToDo"),
+    ("Done"),
+    ("In progress");
+
+INSERT INTO ISSUES (ISSUESLIST_ID, USER_ID_ASSIGNEDTO, SUMMARY, DESCRIPTION)
+VALUES
+    (1, 1, 'Login page issue', 'Users are unable to log in under certain conditions.'),
+    (1, 2, 'Broken link on homepage', 'The link to the contact page is broken on the homepage.'),
+    (1, 3, 'Performance issue', 'The system slows down when more than 100 users are logged in.'),
+    (1, 4, 'UI bug in settings page', 'Alignment issues on the settings page when viewed on mobile devices.'),
+    (1, 5, 'Security vulnerability', 'A potential XSS vulnerability was detected on the comments section.'),
+    (2, 6, 'Search functionality', 'The search bar is not returning accurate results.'),
+    (2, 6, 'Missing icons', 'Some icons are missing in the profile section.'),
+    (2, 5, 'Form validation', 'The registration form allows invalid email addresses.'),
+    (2, 4, 'API timeout', 'API requests are timing out after 30 seconds.'),
+    (2, 3, 'CSS issue', 'Button styling is inconsistent across different browsers.'),
+    (3, 2, 'Database migration', 'The database migration was successfully completed.'),
+    (3, 1, 'Password reset issue', 'The password reset feature was fixed.'),
+    (3, 1, 'Notification system', 'Users now receive email notifications for updates.'),
+    (3, 4, 'Dark mode implementation', 'Dark mode feature has been fully implemented.'),
+    (3, 5, 'File upload', 'File upload feature has been optimized for large files.');
