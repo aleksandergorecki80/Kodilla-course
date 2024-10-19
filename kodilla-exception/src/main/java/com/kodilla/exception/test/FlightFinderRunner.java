@@ -2,7 +2,12 @@ package com.kodilla.exception.test;
 
 public class FlightFinderRunner {
   public static void main(String[] args) {
-    Flight flight = new Flight("London", "Tokyo");
+
+    Flight flight = FlightBuilder.aFlight()
+        .withArrivalAirport("London")
+        .withDepartureAirport("Warszawa")
+        .build();
+
     FlightFinder flightFinder = new FlightFinder();
 
     try {
