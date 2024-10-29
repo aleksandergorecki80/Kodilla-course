@@ -1,11 +1,12 @@
 package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
-import com.kodilla.hibernate.manytomany.CompanyDao;
 import com.kodilla.hibernate.manytomany.Employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +15,9 @@ class CompanyDaoTests {
 
   @Autowired
   private CompanyDao companyDao;
+
+  @Autowired
+  private EmployeeDao employeeDao;
 
   @Test
   void testSaveManyToMany() {
@@ -59,5 +63,55 @@ class CompanyDaoTests {
     //} catch (Exception e) {
     //    //do nothing
     //}
+  }
+
+  @Test
+  void testGetEmployeeByLastName() {
+    // Given
+    Employee johnSmith = new Employee("John", "Smith");
+    Employee patricSmith = new Employee("Patric", "Smith");
+    employeeDao.save(johnSmith);
+    employeeDao.save(patricSmith);
+
+    // When
+    List<Employee> employees = employeeDao.getEmployerByLastName("Smith");
+
+    // Then
+    try {
+      assertFalse(employees.isEmpty());
+    } finally {
+      // CleanUp
+      employeeDao.delete(johnSmith);
+      employeeDao.delete(patricSmith);
+    }
+  }
+
+  @Test
+  void testGetCompaniesByKeyword() {
+    // Given
+
+    Company company1 = new Company("Green Solutions");
+    Company company2 = new Company("Greenwave Innovations");
+    Company company3 = new Company("Greenspark Enterprises");
+    Company company4 = new Company("Grey Matter");
+
+    // When
+    companyDao.save(company1);
+    companyDao.save(company2);
+    companyDao.save(company3);
+    companyDao.save(company4);
+
+    List<Company> companies = companyDao.getCompaniesByKeyword("Gre");
+
+    // Then
+    try {
+      assertFalse(companies.size() == 3);
+    } finally {
+      // CleanUp
+      companyDao.delete(company1);
+      companyDao.delete(company2);
+      companyDao.delete(company3);
+      companyDao.delete(company4);
+    }
   }
 }
