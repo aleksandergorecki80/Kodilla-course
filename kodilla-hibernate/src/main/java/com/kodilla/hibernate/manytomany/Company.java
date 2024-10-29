@@ -6,6 +6,11 @@ import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+    name = "Company.getCompaniesByKeyword",
+    query = "SELECT * FROM COMPANIES WHERE SUBSTRING(company_name, 1, 3) = :KEYWORD",
+    resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
