@@ -2,8 +2,8 @@ package com.kodilla.patterns.carrental;
 
 public class RentalDto {
 
-  private User user;
-  private boolean isRented;
+  private final User user;
+  private final boolean isRented;
 
   public RentalDto(final User user, final boolean isRented) {
     this.user = user;
