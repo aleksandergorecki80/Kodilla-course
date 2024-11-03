@@ -6,7 +6,11 @@ public class Application {
     OrderRequest orderRequest = orderRequestRetriever.retrieveOrder();
     System.out.println(orderRequest);
 
-
-
+    OrderProcessor orderProcessor = new OrderProcessor(
+        new MailNotification(),
+        new ProductOrderService(),
+        new ProductOrderRepository()
+    );
+    orderProcessor.process(orderRequest);
   }
 }
