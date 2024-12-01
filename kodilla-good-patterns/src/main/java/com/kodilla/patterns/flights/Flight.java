@@ -3,8 +3,8 @@ package com.kodilla.patterns.flights;
 import java.util.Objects;
 
 public class Flight {
-  public final String departureAirport;
-  public final String arrivalAirport;
+  private final String departureAirport;
+  private final String arrivalAirport;
 
   public Flight(final String departureAirport, final String arrivalAirport) {
     this.departureAirport = departureAirport;

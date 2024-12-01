@@ -13,7 +13,7 @@ public class FlightService {
 
   public Set<Flight> findFlightsFrom(String departure) {
     return repository.getFlights().stream()
-        .filter(flight -> flight.departureAirport.equals(departure))
+        .filter(flight -> flight.getDepartureAirport().equals(departure))
         .collect(Collectors.toSet());
   }
 }
