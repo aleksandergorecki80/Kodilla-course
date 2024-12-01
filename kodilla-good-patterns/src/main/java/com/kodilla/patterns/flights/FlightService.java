@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class FlightService {
   private final FlightRepository repository;
 
-  public FlightService(final FlightRepository repository) {
+  public FlightService(FlightRepository repository) {
     this.repository = repository;
   }
 
