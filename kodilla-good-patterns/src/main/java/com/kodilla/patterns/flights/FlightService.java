@@ -16,4 +16,11 @@ public class FlightService {
         .filter(flight -> flight.getDepartureAirport().equals(departure))
         .collect(Collectors.toSet());
   }
+
+  public Set<Flight> findFlightsTo(String arrival) {
+    return repository.getFlights()
+        .stream()
+        .filter(flight -> flight.getArrivalAirport().equals(arrival))
+        .collect(Collectors.toSet());
+  }
 }
