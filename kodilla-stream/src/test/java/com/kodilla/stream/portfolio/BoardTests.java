@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Stream;
 import java.util.OptionalDouble;
 
 import static java.util.stream.Collectors.toList;
@@ -169,6 +171,24 @@ public class BoardTests {
         .map(Task::getCreated)
         .filter(createdDate -> !Period.between(createdDate, LocalDate.now()).isNegative())
         .count();
+
+    // Lazy stream example
+
+    Stream<Integer> ss =  project.getTaskLists().stream()
+        .filter(inProgressTasks::contains)
+        .flatMap(taskList -> taskList.getTasks().stream())
+        .map(Task::getCreated)
+        .map(createdDate -> Period.between(createdDate, LocalDate.now()))
+        .map(period -> period.getYears() * 365 + period.getMonths() * 30 + period.getDays());
+//        .reduce(0, (a, b) -> a + b);
+
+    Random random = new Random();
+
+    if (random.nextBoolean()) {
+      int x = ss.reduce(0, (a, b) -> a + b);
+    } else {
+      double y = ss.mapToDouble(Integer::doubleValue).average().orElse(0.0);
+    }
 
     assertEquals(10, sumOfDays/numberOfOrders);
   }
