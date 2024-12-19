@@ -22,6 +22,7 @@ public final class TaskList {
   }
 
   public List<Task> getTasks() {
+    return new ArrayList<>(tasks);
 
     return new LinkedList<>(tasks);
 
