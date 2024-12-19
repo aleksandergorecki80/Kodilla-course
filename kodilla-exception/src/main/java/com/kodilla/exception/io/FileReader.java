@@ -32,7 +32,6 @@ public class FileReader {
     } finally {
       System.out.println("I am gonna be here... always!");
     }
-  public void readFile() {
     ClassLoader classLoader = getClass().getClassLoader();
     File file = new File(classLoader.getResource("names.txt").getFile());
 //    Path path = Paths.get(file.getPath());
