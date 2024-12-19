@@ -25,7 +25,6 @@ public final class TaskList {
     return new ArrayList<>(tasks);
 
     return new LinkedList<>(tasks);
-
   }
 
   public String getName() {
