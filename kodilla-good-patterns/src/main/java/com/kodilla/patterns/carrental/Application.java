@@ -24,5 +24,4 @@ public class Application {
         new MailService(), new CarRentalService(), new CarRentalRepository());
     rentalProcessor.process(rentRequest);
   }
-
 }

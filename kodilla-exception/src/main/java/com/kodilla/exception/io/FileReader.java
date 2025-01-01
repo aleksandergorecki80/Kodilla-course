@@ -44,7 +44,6 @@ public class FileReader {
       System.out.println("I am going to be here always.");
     }
 
-
     System.out.println(file.getPath());
   }
 }
