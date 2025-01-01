@@ -16,6 +16,6 @@ public class ExceptionModuleRunner {
     }
 
     System.out.println("Problem reading file");
-
+    fileReader.readFile();
   }
 }
