@@ -8,6 +8,7 @@ public class FlightFinderRunner {
         .withDepartureAirport("Warszawa")
         .build();
 
+    Flight flight = new Flight("London", "Tokyo");
     FlightFinder flightFinder = new FlightFinder();
 
     try {

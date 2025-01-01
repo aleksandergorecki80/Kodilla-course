@@ -9,7 +9,6 @@ public class Flight {
     this.arrivalAirport = arrivalAirport;
   }
 
-
   public String getDepartureAirport() {
     return departureAirport;
   }
