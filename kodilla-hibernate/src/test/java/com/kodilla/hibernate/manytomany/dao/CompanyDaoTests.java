@@ -101,7 +101,7 @@ class CompanyDaoTests {
     companyDao.save(company3);
     companyDao.save(company4);
 
-    List<Company> companies = companyDao.getCompaniesByKeyword("Gre");
+    List<Company> companies = companyDao.getCompaniesByKeywordSubstring("Gre");
 
     // Then
     try {

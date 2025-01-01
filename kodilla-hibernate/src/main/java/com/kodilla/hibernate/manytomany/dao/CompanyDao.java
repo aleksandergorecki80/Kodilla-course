@@ -11,5 +11,7 @@ import java.util.List;
 @Transactional
 @Repository
 public interface CompanyDao extends CrudRepository<Company, Integer> {
-  List<Company> getCompaniesByKeyword(@Param("KEYWORD") String anything);
+  List<Company> getCompaniesByKeywordSubstring(@Param("KEYWORD") String anything);
+
+  List<Company> getCompaniesByKeywordLike(@Param("ARG") String keyword);
 }
