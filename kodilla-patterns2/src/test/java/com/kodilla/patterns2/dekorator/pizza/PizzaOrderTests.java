@@ -1,6 +1,7 @@
 package com.kodilla.patterns2.dekorator.pizza;
 
 import com.kodilla.patterns2.decorator.pizza.BasicPizzaOrder;
+import com.kodilla.patterns2.decorator.pizza.CheeseOrderDecorator;
 import com.kodilla.patterns2.decorator.pizza.PizzaOrder;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class PizzaOrderTests {
         BigDecimal cost = pizzaOrder.getCost();
 
         // Then
-        assertEquals(new BigDecimal(15), cost);
+        assertEquals(new BigDecimal(25), cost);
     }
 
     @Test
@@ -32,5 +33,31 @@ public class PizzaOrderTests {
 
         // Then
         assertEquals("Ingredients: base, tomato sauce, cheese", ingredients);
+    }
+
+    @Test
+    public void testPizzaWithOneExtraCheeseGetCost() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new CheeseOrderDecorator(pizzaOrder);
+
+        // When
+        BigDecimal cost = pizzaOrder.getCost();
+
+        // Then
+        assertEquals(new BigDecimal(30), cost);
+    }
+
+    @Test
+    public void testPizzaWithOneExtraCheeseGetIngredients() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new CheeseOrderDecorator(pizzaOrder);
+
+        // When
+        String ingredients = pizzaOrder.getIngredients();
+
+        // Then
+        assertEquals("Ingredients: base, tomato sauce, cheese + extra cheese", ingredients);
     }
 }

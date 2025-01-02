@@ -6,7 +6,7 @@ public class BasicPizzaOrder implements PizzaOrder {
 
     @Override
     public BigDecimal getCost() {
-        return new BigDecimal(15);
+        return new BigDecimal(25);
     }
 
     @Override
