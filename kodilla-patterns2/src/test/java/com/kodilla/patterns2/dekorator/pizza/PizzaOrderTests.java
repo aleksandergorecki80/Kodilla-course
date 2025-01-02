@@ -1,8 +1,6 @@
 package com.kodilla.patterns2.dekorator.pizza;
 
-import com.kodilla.patterns2.decorator.pizza.BasicPizzaOrder;
-import com.kodilla.patterns2.decorator.pizza.CheeseOrderDecorator;
-import com.kodilla.patterns2.decorator.pizza.PizzaOrder;
+import com.kodilla.patterns2.decorator.pizza.*;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -20,7 +18,7 @@ public class PizzaOrderTests {
         BigDecimal cost = pizzaOrder.getCost();
 
         // Then
-        assertEquals(new BigDecimal(25), cost);
+        assertEquals(new BigDecimal(20), cost);
     }
 
     @Test
@@ -45,7 +43,7 @@ public class PizzaOrderTests {
         BigDecimal cost = pizzaOrder.getCost();
 
         // Then
-        assertEquals(new BigDecimal(30), cost);
+        assertEquals(new BigDecimal(25), cost);
     }
 
     @Test
@@ -59,5 +57,120 @@ public class PizzaOrderTests {
 
         // Then
         assertEquals("Ingredients: base, tomato sauce, cheese + extra cheese", ingredients);
+    }
+
+
+    @Test
+    public void testBasicPizzaWithPineappleCost() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new PineappleOrderDecorator(pizzaOrder);
+
+        // When
+        BigDecimal cost = pizzaOrder.getCost();
+
+        // Then
+        assertEquals(new BigDecimal(27), cost);
+    }
+
+    @Test
+    public void testBasicPizzaWithPineappleIngredients() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new PineappleOrderDecorator(pizzaOrder);
+
+        // When
+        String ingredients = pizzaOrder.getIngredients();
+
+        // Then
+        assertEquals("Ingredients: base, tomato sauce, cheese + pineapple", ingredients);
+    }
+
+    @Test
+    public void testBasicPizzaWithPineappleAndChickenCost() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new PineappleOrderDecorator(pizzaOrder);
+        pizzaOrder = new ChickenOrderDecorator(pizzaOrder);
+
+        // When
+        BigDecimal cost = pizzaOrder.getCost();
+
+        // Then
+        assertEquals(new BigDecimal(35), cost);
+    }
+
+    @Test
+    public void testBasicPizzaWithPineappleAndChickenIngredients() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new PineappleOrderDecorator(pizzaOrder);
+        pizzaOrder = new ChickenOrderDecorator(pizzaOrder);
+
+        // When
+        String ingredients = pizzaOrder.getIngredients();
+
+        // Then
+        assertEquals("Ingredients: base, tomato sauce, cheese + pineapple + chicken", ingredients);
+    }
+
+    @Test
+    public void testBasicPizzaWithPineappleChickenAndHamCost() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new PineappleOrderDecorator(pizzaOrder);
+        pizzaOrder = new ChickenOrderDecorator(pizzaOrder);
+        pizzaOrder = new HamOrderDecorator(pizzaOrder);
+
+        // When
+        BigDecimal cost = pizzaOrder.getCost();
+
+        // Then
+        assertEquals(new BigDecimal(44), cost);
+    }
+
+    @Test
+    public void testBasicPizzaWithPineappleChickenAndHamIngredients() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new PineappleOrderDecorator(pizzaOrder);
+        pizzaOrder = new ChickenOrderDecorator(pizzaOrder);
+        pizzaOrder = new HamOrderDecorator(pizzaOrder);
+
+        // When
+        String ingredients = pizzaOrder.getIngredients();
+
+        // Then
+        assertEquals("Ingredients: base, tomato sauce, cheese + pineapple + chicken + ham", ingredients);
+    }
+
+    @Test
+    public void testBasicPizzaWithTofuAndDoubleCheeseCost() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new TofuOrderDecorator(pizzaOrder);
+        pizzaOrder = new CheeseOrderDecorator(pizzaOrder);
+        pizzaOrder = new CheeseOrderDecorator(pizzaOrder);
+
+        // When
+        BigDecimal cost = pizzaOrder.getCost();
+
+        // Then
+        assertEquals(new BigDecimal(42), cost);
+    }
+
+    @Test
+    public void testBasicPizzaWithTofuAndDoubleCheeseIngredients() {
+        // Given
+        PizzaOrder pizzaOrder = new BasicPizzaOrder();
+        pizzaOrder = new TofuOrderDecorator(pizzaOrder);
+        pizzaOrder = new CheeseOrderDecorator(pizzaOrder);
+        pizzaOrder = new CheeseOrderDecorator(pizzaOrder);
+
+        // When
+        String ingredients = pizzaOrder.getIngredients();
+
+        // Then
+        assertEquals("Ingredients: base, tomato sauce, cheese + tofu + extra cheese + extra cheese", ingredients);
     }
 }
