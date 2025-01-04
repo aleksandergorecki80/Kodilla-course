@@ -22,4 +22,11 @@ public class FlightService {
                 .filter(flight -> flight.getArrivalAirport().equals(arrival))
                 .collect(Collectors.toSet());
     }
+
+    public Set<Flight> findConnectingFlights(String departure, String arrival) {
+        return repository.getFlights()
+                .stream()
+                .filter(flight -> flight.getArrivalAirport().equals(arrival))
+                .collect(Collectors.toSet());
+    }
 }
