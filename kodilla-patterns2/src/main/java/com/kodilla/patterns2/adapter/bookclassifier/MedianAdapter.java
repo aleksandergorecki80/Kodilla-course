@@ -9,9 +9,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MedianAdapter extends MedianAdaptee implements Classifier {
+
     @Override
     public int publicationYearMedian(Set<Book> bookSet) {
-
         Map<BookSignature, com.kodilla.patterns2.adapter.bookclassifier.libraryb.Book> booksMap = bookSet.stream()
                 .collect(Collectors.toMap(
                         book -> new BookSignature(book.getSignature()),
