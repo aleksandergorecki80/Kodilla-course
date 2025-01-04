@@ -1,4 +1,4 @@
-package com.kodilla.patterns2.aop.calculator;
+package com.kodilla.patterns2.app.calculator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

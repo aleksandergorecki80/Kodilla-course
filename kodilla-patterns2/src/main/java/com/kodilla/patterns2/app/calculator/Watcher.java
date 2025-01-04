@@ -1,4 +1,4 @@
-package com.kodilla.patterns2.aop.calculator;
+package com.kodilla.patterns2.app.calculator;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -15,13 +15,13 @@ import java.math.BigDecimal;
 public class Watcher {
     private static final Logger LOGGER = LoggerFactory.getLogger(Watcher.class);
 
-    @Before(value = "execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))" +
+    @Before(value = "execution(* com.kodilla.patterns2.app.calculator.Calculator.factorial(..))" +
             "&& args(theNumber) && target(object)", argNames = "theNumber,object")
     public void logEvent(BigDecimal theNumber, Object object) {
         LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + theNumber);
     }
 
-    @Around("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
+    @Around("execution(* com.kodilla.patterns2.app.calculator.Calculator.factorial(..))")
     public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object result;
         try {

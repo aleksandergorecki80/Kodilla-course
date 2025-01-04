@@ -1,4 +1,4 @@
-package com.kodilla.patterns2.aop.calculator;
+package com.kodilla.patterns2.app.calculator;
 
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
