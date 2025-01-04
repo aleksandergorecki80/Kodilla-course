@@ -1,6 +1,5 @@
 package com.kodilla.good.patterns.challenges;
 
-public class ProductOrderService {
 
 public class ProductOrderService implements OrderService {
 
@@ -12,12 +11,12 @@ public class ProductOrderService implements OrderService {
     String date = orderRequest.getOrderDate().toString();
 
     String result = String.format(
-        """
-           __Adding order__
-            Product Name: %s
-            User Name: %s 
-            Date: %s
-           """, productName, userSurname, date
+            """
+                    __Adding order__
+                     Product Name: %s
+                     User Name: %s 
+                     Date: %s
+                    """, productName, userSurname, date
     );
 
     System.out.println(result);
