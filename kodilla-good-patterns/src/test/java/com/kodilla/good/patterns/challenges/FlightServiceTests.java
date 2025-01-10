@@ -1,6 +1,7 @@
 package com.kodilla.good.patterns.challenges;
 
 import com.kodilla.good.patterns.challenges.flights.Flight;
+import com.kodilla.good.patterns.challenges.flights.FlightPair;
 import com.kodilla.good.patterns.challenges.flights.FlightRepository;
 import com.kodilla.good.patterns.challenges.flights.FlightService;
 import org.junit.jupiter.api.Test;
@@ -80,7 +81,14 @@ class FlightServiceTests {
         FlightService flightService = new FlightService(flightRepository);
 
         // When
-        Set<Flight> result = flightService.findConnectingFlights("London", "Berlin");
-        System.out.println(result);
+        FlightPair flightPairs1 = new FlightPair(flight1, flight4);
+        FlightPair flightPairs2 = new FlightPair(flight2, flight5);
+        Set<FlightPair> result =  flightService.findConnectingFlights("London", "Berlin");
+
+        // Then
+        result.forEach(FlightPair::showInfo);
+        assertTrue(result.contains(flightPairs1));
+        assertTrue(result.contains(flightPairs2));
     }
+
 }

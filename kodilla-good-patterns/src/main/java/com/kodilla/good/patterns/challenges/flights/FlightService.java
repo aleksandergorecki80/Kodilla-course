@@ -11,8 +11,9 @@ public class FlightService {
     }
 
     public Set<Flight> findFlightsFrom(String departure) {
-        return repository.getFlights().stream()
-                .filter(flight -> flight.departureAirport.equals(departure))
+        return repository.getFlights()
+                .stream()
+                .filter(flight -> flight.getDepartureAirport().equals(departure))
                 .collect(Collectors.toSet());
     }
 
@@ -23,10 +24,16 @@ public class FlightService {
                 .collect(Collectors.toSet());
     }
 
-    public Set<Flight> findConnectingFlights(String departure, String arrival) {
-        return repository.getFlights()
-                .stream()
-                .filter(flight -> flight.getArrivalAirport().equals(arrival))
+    public Set<FlightPair>  findConnectingFlights(String departure, String arrival) {
+
+        Set<Flight> firstFlights = this.findFlightsFrom(departure);
+        Set<Flight> secondFlights = this.findFlightsTo(arrival);
+
+        return secondFlights.stream()
+                .flatMap(secondFlight -> firstFlights.stream()
+                        .filter(firstFlight -> firstFlight.getArrivalAirport().equals(secondFlight.getDepartureAirport()))
+                        .map((firstFlight) -> new FlightPair(firstFlight, secondFlight))
+                )
                 .collect(Collectors.toSet());
     }
 }

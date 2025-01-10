@@ -1,10 +1,9 @@
 package com.kodilla.good.patterns.challenges.flights;
 
-import java.util.Objects;
 
 public class Flight {
-    public final String departureAirport;
-    public final String arrivalAirport;
+    private final String departureAirport;
+    private final String arrivalAirport;
 
     public Flight(final String departureAirport, final String arrivalAirport) {
         this.departureAirport = departureAirport;
@@ -19,19 +18,4 @@ public class Flight {
         return arrivalAirport;
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Flight flight = (Flight) o;
-        return Objects.equals(departureAirport, flight.departureAirport) && Objects.equals(arrivalAirport, flight.arrivalAirport);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hashCode(departureAirport);
-        result = 31 * result + Objects.hashCode(arrivalAirport);
-        return result;
-    }
 }
