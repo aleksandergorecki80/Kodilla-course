@@ -1,22 +1,19 @@
-package com.kodilla.testing2.google;
+package com.kodilla.testing2.ebay;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+public class EBayTestingApp {
+    public static final String SEARCHFIELD = "_nkw";
 
-public class GoogleTestingApp {
-    public static final String SEARCHFIELD = "q";
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebDriver driver = WebDriverManager.firefoxdriver().create();
-        driver.get("https://www.google.com");
-
-        driver.findElement(By.xpath("//*[@id=\"L2AGLb\"]/div")).click();
+        driver.get("https://www.ebay.com/");
 
         WebElement searchField = driver.findElement(By.name(SEARCHFIELD));
-        searchField.sendKeys("Kodilla");
+        searchField.sendKeys("Laptop");
         searchField.submit();
     }
 }
