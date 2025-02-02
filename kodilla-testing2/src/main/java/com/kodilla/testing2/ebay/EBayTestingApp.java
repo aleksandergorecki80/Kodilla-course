@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class EBayTestingApp {
     public static final String SEARCHFIELD = "_nkw";
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         WebDriver driver = WebDriverManager.firefoxdriver().create();
         driver.get("https://www.ebay.com/");
 
