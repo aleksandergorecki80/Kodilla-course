@@ -13,15 +13,15 @@ import java.util.Random;
 
 
 public class CrudAppTestSuite {
-    private static final String BASE_LOCAL_URL = "http://localhost/crud/";
-//    private static final String BASE_REMOTE_URL = "https://aleksandergorecki80.github.io/";
+//    private static final String BASE_LOCAL_URL = "http://localhost/crud/";
+    private static final String BASE_REMOTE_URL = "https://aleksandergorecki80.github.io/";
     private WebDriver driver;
     private Random generator;
 
     @BeforeEach
     public void initTests() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get(BASE_LOCAL_URL);
+        driver.get(BASE_REMOTE_URL);
         generator = new Random();
     }
 
